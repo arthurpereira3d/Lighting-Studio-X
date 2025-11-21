@@ -89,10 +89,10 @@ export const generateVariations = async (
     baseImage: File,
     referenceImage: File
 ): Promise<string[]> => {
-    if (!process.env.API_KEY) {
+    if (!import.meta.env.VITE_API_KEY) {
         throw new Error("API key not found. Please set the API_KEY environment variable.");
     }
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
     const prompt = getGenerationPrompt();
     
     const promises = Array(4).fill(0).map(() => 
@@ -106,10 +106,10 @@ export const revariateImage = async (
     baseVariationImage: string,
     originalReferenceImage: File
 ): Promise<string[]> => {
-    if (!process.env.API_KEY) {
+    if (!import.meta.env.VITE_API_KEY) {
         throw new Error("API key not found. Please set the API_KEY environment variable.");
     }
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
     const prompt = getRevariationPrompt();
     
     const promises = Array(4).fill(0).map(() => 
